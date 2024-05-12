@@ -1,23 +1,15 @@
 
-import { useNavigate } from "react-router-dom"
 import "../styles/home.css"
 import { ButtonComponent } from "./ButtonComponent"
 import { TaskComponent } from "./TaskComponent"
 import { useEffect, useState } from "react"
 import { TableTasksComponent } from "./TableTasksComponent"
+import { SidebarComponent } from "./SidebarComponent"
 
 export const HomeComponent = ({userData}) => {
 
     const [tasks, setTasks] = useState([])
-
-    const navigate = useNavigate()
     const user = userData[0]
-    const logOut = () => {
-        localStorage.setItem("token", "")
-        if(localStorage.getItem("token").length === 0){
-            navigate("/")
-        }
-    }
 
     useEffect(() => {
         fetch(`http://localhost:3000/get-task/${user.id}`)
@@ -31,13 +23,14 @@ export const HomeComponent = ({userData}) => {
 
      return (
         <div className="home-component">
-            <div className="home-header">
-                <ButtonComponent onClick={logOut}>Cerrar sesion</ButtonComponent>
+            <div className="side-container">
+                <SidebarComponent userData={user}/>
             </div>
-            <div className="home-body">
-                <h1>Bienvenido {user.name} {user.last_name}</h1>
-                <TaskComponent />
-                <TableTasksComponent tasks={tasks}/>
+            <div className="task-container">
+                <div className="home-body">
+                    <TaskComponent userData={user}/>
+                    <TableTasksComponent tasks={tasks}/>
+                </div>
             </div>
         </div>
      )

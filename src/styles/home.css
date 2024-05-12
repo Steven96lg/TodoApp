@@ -1,17 +1,31 @@
 
 .home-component{
     width: 100%;
-    height: 100vh;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 25% 75%;
     & .home-header{
         padding: 5px;
         display: flex;
         justify-content: end;
     }
-    & .home-body{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+
+    & .task-container{
+        margin-top: 20px;
+        & .home-body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            & .create-task{
+                width: 80%;
+                display: grid;
+                grid-template-columns: 19% 59% 19%;
+                gap: 5px;
+            }
+        }
     }
+    
 }
 
 .table-div{
@@ -20,15 +34,93 @@
     & .table-head{
         width: 100%;
         display: grid;
-        grid-template-columns: 25% 50% 25%;
+        grid-template-columns: 25% 35% 20% 20%;
         background-color: rgba(255,255,255,.1);
-        padding: 10px 0px;
+        padding: 10px 2px;
+        border-radius: 5px;
     }
 
     & .table-body{
         width: 100%;
         display: grid;
-        grid-template-columns: 25% 50% 25%;
-        border-bottom: 1px solid gray;
+        grid-template-columns: 25% 35% 20% 20%;
+        background-color: rgba(11, 204, 40, 0.3);
+        border-radius: 5px;
+        margin-top: 5px;
+        padding: 0 2px;
+        & div{
+            display: flex;
+            align-items: center;
+            & button{
+                margin-left: 15px;
+                background-color: transparent;
+            }
+        }
     }
 }
+
+.side-container{
+    & .sidebar-content{
+        padding: 20px 10px;
+        height: 100vh;
+        width: 25%;
+        border-radius: 0 20px 20px 0;
+        background-color: rgba(0,0,0,.3);
+        position: fixed;
+
+        & .header-sidebar{
+            display: flex;
+            align-items: center;
+            background-color: rgba(255,255,255,.2);
+            padding: 10px 5px;
+            border-radius: 5px;
+            & img{
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+            & strong{
+                font-size: 24px;
+                padding-left: 10px;
+            }
+
+            & div{
+                & button{
+                    background-color: transparent;
+                    padding: 0px;
+                    border: none;
+                    padding-left: 10px;
+                    transition: color 500ms;
+                }
+                & button:hover{
+                    border: none;
+                    color: gray;
+                }
+            }
+        }
+        & .body-sidebar{
+            margin-top: 10px;
+            & .spaces{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 1px solid gray;
+                padding-bottom: 10px;
+                & button{
+                    background-color: gray;
+                    border: none;
+                    transition: background 500ms;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-around;
+                }
+                & button:hover{
+                    border: none;
+                    background-color: darkgray;
+                }
+            }
+        }
+    }
+}
+
